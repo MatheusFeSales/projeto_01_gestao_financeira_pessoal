@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="projeto-01-sistema-de-gest%C3%A3o-financeira-pessoal">Projeto 01: Sistema de Gestão Financeira Pessoal</h1>
+<h2 id="%F0%9F%93%8B-objetivo">📋 Objetivo</h2>
+<p>Desenvolver um sistema simples de gestão financeira pessoal que permita registrar receitas e despesas, calcular saldo atual e gerar relatórios básicos usando apenas os conceitos fundamentais de Python.</p>
+<h2 id="%F0%9F%97%BA%EF%B8%8F-diagrama-de-contexto">🗺️ Diagrama de Contexto</h2>
+<pre><code class="language-mermaid"><div class="mermaid">graph TD
+    A[Sistema de Gestão Financeira] --> B[Entrada de Dados]
+    B --> C[Processamento e Cálculos]
+    C --> D[Relatórios e Saída]
+    C --> E[Arquivo TXT<br/>Persistência]
+    D --> F[Usuário]
+    
+    style A fill:#e1f5ff
+    style B fill:#ffe1f5
+    style C fill:#e7ffe1
+    style D fill:#fff5e1
+    style E fill:#f5e1ff
+</div></code></pre>
+<h2 id="%F0%9F%94%A7-funcionalidades-b%C3%A1sicas">🔧 Funcionalidades Básicas</h2>
+<ol>
+<li>
+<p><strong>Cadastro de Transações</strong></p>
+<ul>
+<li>Registrar receitas (descrição, valor, data)</li>
+<li>Registrar despesas (descrição, valor, data, categoria)</li>
+<li>Validar valores positivos</li>
+</ul>
+</li>
+<li>
+<p><strong>Cálculos Financeiros</strong></p>
+<ul>
+<li>Calcular saldo atual (receitas - despesas)</li>
+<li>Calcular total de receitas por período</li>
+<li>Calcular total de despesas por período</li>
+<li>Calcular gastos por categoria</li>
+</ul>
+</li>
+<li>
+<p><strong>Relatórios</strong></p>
+<ul>
+<li>Exibir extrato de transações</li>
+<li>Mostrar resumo financeiro (saldo, totais, categorias)</li>
+<li>Filtrar transações por período ou categoria</li>
+</ul>
+</li>
+<li>
+<p><strong>Persistência de Dados</strong></p>
+<ul>
+<li>Salvar transações em arquivo TXT</li>
+<li>Carregar transações do arquivo</li>
+<li>Manter histórico de transações</li>
+</ul>
+</li>
+</ol>
+<h2 id="%F0%9F%93%8A-estrutura-de-dados">📊 Estrutura de Dados</h2>
+<h3 id="entrada">Entrada</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Receita</span>
+receita = {
+    <span class="hljs-string">'tipo'</span>: <span class="hljs-string">'receita'</span>,
+    <span class="hljs-string">'descricao'</span>: <span class="hljs-string">'Salário'</span>,
+    <span class="hljs-string">'valor'</span>: <span class="hljs-number">5000.00</span>,
+    <span class="hljs-string">'data'</span>: <span class="hljs-string">'2024-01-15'</span>
+}
+
+<span class="hljs-comment"># Despesa</span>
+despesa = {
+    <span class="hljs-string">'tipo'</span>: <span class="hljs-string">'despesa'</span>,
+    <span class="hljs-string">'descricao'</span>: <span class="hljs-string">'Supermercado'</span>,
+    <span class="hljs-string">'valor'</span>: <span class="hljs-number">450.00</span>,
+    <span class="hljs-string">'data'</span>: <span class="hljs-string">'2024-01-20'</span>,
+    <span class="hljs-string">'categoria'</span>: <span class="hljs-string">'Alimentação'</span>
+}
+</div></code></pre>
+<h3 id="sa%C3%ADda">Saída</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Lista de transações</span>
+transacoes = [
+    {<span class="hljs-string">'tipo'</span>: <span class="hljs-string">'receita'</span>, <span class="hljs-string">'descricao'</span>: <span class="hljs-string">'Salário'</span>, <span class="hljs-string">'valor'</span>: <span class="hljs-number">5000.00</span>, <span class="hljs-string">'data'</span>: <span class="hljs-string">'2024-01-15'</span>},
+    {<span class="hljs-string">'tipo'</span>: <span class="hljs-string">'despesa'</span>, <span class="hljs-string">'descricao'</span>: <span class="hljs-string">'Supermercado'</span>, <span class="hljs-string">'valor'</span>: <span class="hljs-number">450.00</span>, <span class="hljs-string">'data'</span>: <span class="hljs-string">'2024-01-20'</span>, <span class="hljs-string">'categoria'</span>: <span class="hljs-string">'Alimentação'</span>},
+    <span class="hljs-comment"># ... mais transações</span>
+]
+
+<span class="hljs-comment"># Relatório</span>
+relatorio = {
+    <span class="hljs-string">'saldo_atual'</span>: <span class="hljs-number">4550.00</span>,
+    <span class="hljs-string">'total_receitas'</span>: <span class="hljs-number">5000.00</span>,
+    <span class="hljs-string">'total_despesas'</span>: <span class="hljs-number">450.00</span>,
+    <span class="hljs-string">'gastos_por_categoria'</span>: {
+        <span class="hljs-string">'Alimentação'</span>: <span class="hljs-number">450.00</span>,
+        <span class="hljs-string">'Transporte'</span>: <span class="hljs-number">200.00</span>
+    }
+}
+</div></code></pre>
+<h2 id="%F0%9F%92%BB-requisitos-t%C3%A9cnicos">💻 Requisitos Técnicos</h2>
+<ul>
+<li>Python 3.8+</li>
+<li>Conhecimentos em:
+<ul>
+<li>Tipos de dados (int, float, str, dict, list)</li>
+<li>Estruturas de controle (if/else, for, while)</li>
+<li>Funções e documentação</li>
+<li>Compreensões de lista e dicionário</li>
+<li>Manipulação de arquivos (leitura/escrita)</li>
+<li>Tratamento de erros básico</li>
+</ul>
+</li>
+</ul>
+<h2 id="%F0%9F%93%A6-entreg%C3%A1veis">📦 Entregáveis</h2>
+<ol>
+<li>
+<p><strong>Código Python</strong> (<code>sistema_financeiro.py</code>)</p>
+<ul>
+<li>Módulo principal com todas as funcionalidades</li>
+<li>Funções bem documentadas</li>
+<li>Tratamento de erros básico</li>
+</ul>
+</li>
+<li>
+<p><strong>Arquivo de Dados</strong> (<code>transacoes.txt</code>)</p>
+<ul>
+<li>Formato estruturado para persistência</li>
+<li>Exemplo com algumas transações</li>
+</ul>
+</li>
+<li>
+<p><strong>Relatório de Testes</strong> (<code>testes.md</code>)</p>
+<ul>
+<li>Cenários testados</li>
+<li>Resultados obtidos</li>
+</ul>
+</li>
+<li>
+<p><strong>Documentação</strong> (<code>README.md</code>)</p>
+<ul>
+<li>Como usar o sistema</li>
+<li>Exemplos de uso</li>
+</ul>
+</li>
+</ol>
+<h2 id="%F0%9F%92%A1-dicas">💡 Dicas</h2>
+<ol>
+<li>Use dicionários para representar transações</li>
+<li>Use listas para armazenar múltiplas transações</li>
+<li>Implemente funções para cada funcionalidade:
+<ul>
+<li><code>adicionar_transacao()</code></li>
+<li><code>calcular_saldo()</code></li>
+<li><code>filtrar_por_categoria()</code></li>
+<li><code>gerar_relatorio()</code></li>
+<li><code>salvar_arquivo()</code></li>
+<li><code>carregar_arquivo()</code></li>
+</ul>
+</li>
+<li>Use list comprehension para filtrar transações</li>
+<li>Use dict comprehension para agrupar por categoria</li>
+<li>Formate números monetários com 2 casas decimais</li>
+<li>Valide entradas do usuário antes de processar</li>
+</ol>
+<h2 id="%F0%9F%8F%97%EF%B8%8F-esqueleto-do-projeto">🏗️ Esqueleto do Projeto</h2>
+<pre class="hljs"><code><div><span class="hljs-comment"># sistema_financeiro.py</span>
+
+<span class="hljs-comment"># ============================================</span>
+<span class="hljs-comment"># Sistema de Gestão Financeira Pessoal</span>
+<span class="hljs-comment"># ============================================</span>
+
+transacoes = []  <span class="hljs-comment"># Lista global para armazenar transações</span>
+arquivo_dados = <span class="hljs-string">"transacoes.txt"</span>
+
+<span class="hljs-comment"># ============================================</span>
+<span class="hljs-comment"># FUNÇÕES DE TRANSAÇÕES</span>
+<span class="hljs-comment"># ============================================</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adicionar_transacao</span><span class="hljs-params">(tipo, descricao, valor, data, categoria=None)</span>:</span>
+    <span class="hljs-string">"""
+    Adiciona uma nova transação à lista.
+    
+    Args:
+        tipo (str): 'receita' ou 'despesa'
+        descricao (str): Descrição da transação
+        valor (float): Valor da transação
+        data (str): Data no formato 'YYYY-MM-DD'
+        categoria (str, optional): Categoria da despesa
+    
+    Returns:
+        dict: Transação criada
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Implementar validações</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Criar dicionário da transação</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Adicionar à lista</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Retornar transação</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">listar_transacoes</span><span class="hljs-params">(filtro_tipo=None, filtro_categoria=None)</span>:</span>
+    <span class="hljs-string">"""
+    Lista todas as transações com filtros opcionais.
+    
+    Args:
+        filtro_tipo (str, optional): 'receita' ou 'despesa'
+        filtro_categoria (str, optional): Nome da categoria
+    
+    Returns:
+        list: Lista de transações filtradas
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Usar list comprehension para filtrar</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># ============================================</span>
+<span class="hljs-comment"># FUNÇÕES DE CÁLCULOS</span>
+<span class="hljs-comment"># ============================================</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcular_saldo</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""
+    Calcula o saldo atual (receitas - despesas).
+    
+    Returns:
+        float: Saldo atual
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Separar receitas e despesas</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Calcular totais</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Retornar diferença</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcular_total_por_tipo</span><span class="hljs-params">(tipo)</span>:</span>
+    <span class="hljs-string">"""
+    Calcula total de receitas ou despesas.
+    
+    Args:
+        tipo (str): 'receita' ou 'despesa'
+    
+    Returns:
+        float: Total do tipo especificado
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Filtrar por tipo</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Somar valores</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcular_gastos_por_categoria</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""
+    Calcula total de gastos agrupados por categoria.
+    
+    Returns:
+        dict: Dicionário {categoria: total}
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Filtrar apenas despesas</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Usar dict comprehension para agrupar</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># ============================================</span>
+<span class="hljs-comment"># FUNÇÕES DE RELATÓRIOS</span>
+<span class="hljs-comment"># ============================================</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gerar_relatorio</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""
+    Gera relatório completo das finanças.
+    
+    Returns:
+        dict: Dicionário com todas as informações
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Calcular todos os valores</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Criar dicionário de relatório</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">exibir_extrato</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""
+    Exibe extrato formatado de todas as transações.
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Iterar sobre transações</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Formatar e exibir</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># ============================================</span>
+<span class="hljs-comment"># FUNÇÕES DE PERSISTÊNCIA</span>
+<span class="hljs-comment"># ============================================</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">salvar_arquivo</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""
+    Salva transações em arquivo TXT.
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Abrir arquivo em modo escrita</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Converter transações para formato legível</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Escrever no arquivo</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">carregar_arquivo</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""
+    Carrega transações do arquivo TXT.
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Verificar se arquivo existe</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Ler arquivo linha por linha</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Converter de volta para dicionários</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Adicionar à lista transacoes</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># ============================================</span>
+<span class="hljs-comment"># FUNÇÃO PRINCIPAL</span>
+<span class="hljs-comment"># ============================================</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""
+    Função principal do programa.
+    """</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Carregar dados do arquivo</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Menu interativo</span>
+    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Opções: adicionar, listar, relatório, salvar, sair</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()
+</div></code></pre>
+<h2 id="%F0%9F%93%9D-exemplo-de-uso">📝 Exemplo de Uso</h2>
+<pre class="hljs"><code><div><span class="hljs-comment"># Exemplo de uso do sistema</span>
+
+<span class="hljs-comment"># Adicionar uma receita</span>
+adicionar_transacao(
+    tipo=<span class="hljs-string">'receita'</span>,
+    descricao=<span class="hljs-string">'Salário Janeiro'</span>,
+    valor=<span class="hljs-number">5000.00</span>,
+    data=<span class="hljs-string">'2024-01-05'</span>
+)
+
+<span class="hljs-comment"># Adicionar uma despesa</span>
+adicionar_transacao(
+    tipo=<span class="hljs-string">'despesa'</span>,
+    descricao=<span class="hljs-string">'Supermercado'</span>,
+    valor=<span class="hljs-number">450.00</span>,
+    data=<span class="hljs-string">'2024-01-10'</span>,
+    categoria=<span class="hljs-string">'Alimentação'</span>
+)
+
+<span class="hljs-comment"># Gerar relatório</span>
+relatorio = gerar_relatorio()
+print(<span class="hljs-string">f"Saldo atual: R$ <span class="hljs-subst">{relatorio[<span class="hljs-string">'saldo_atual'</span>]:<span class="hljs-number">.2</span>f}</span>"</span>)
+
+<span class="hljs-comment"># Salvar em arquivo</span>
+salvar_arquivo()
+</div></code></pre>
+
+</body>
+</html>
