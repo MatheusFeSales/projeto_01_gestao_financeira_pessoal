@@ -1,18 +1,44 @@
 from datetime import datetime
 import os
 
+# --------------------------------------------
+# Estrutura de Dados Principal
+# --------------------------------------------
+# Manteremos todas as transações adicionadas pelo usuário nesse dicionário.
+# Cada transação tem: tipo ('receita' | 'despesa'), descricao (str),
+# valor (float, positivo), data (YYYY-MM-DD) e categoria (str ou None).
+
 transacoes = []
+
+# Nome do arquivo usado para persistência simples (formato texto)
 arquivo_dados = 'transacoes.txt'
 
 # ============================================
 # FUNÇÕES DE TRANSAÇÕES
 # ============================================
+
 def adicionar_transacao(tipo, descricao, valor, data, categoria=None):
+    ''''
+    Cria e adiciona uma transação válida à lista global transações.
+    Regras: 
+    - Tipo: Receita ou despesa;
+    - Descrição não pode ser vazia;
+    - Valor deve ser número e maior que zero;
+    - Data deve seguir o padrão YYYY-MM-DD;
+    - Despesas devem ser obrigatório a categoria, se vier sem vira 'Sem categoria';
+    - Para receitas, categoria = None.
+
+    Retorna o dicionário da transação adicionada, ou None em caso de erro (com prints).
+
+    '''
+
+    # Normaliza e valida o tipo
     tipo = str(tipo).lower().strip()
     if tipo not in ('receita', 'despesa'):
         print('Você não colocou um tipo válido (use "receita" ou "despesa").')
         return
-
+    
+    # Tenta converter o valor para float
     try:
         valor = float(valor)
     except ValueError:
@@ -23,22 +49,26 @@ def adicionar_transacao(tipo, descricao, valor, data, categoria=None):
         print('Digite um valor positivo.')
         return
 
+    # Valida a descrição
     if not isinstance(descricao, str) or not descricao.strip():
         print("Descrição não pode ser vazia.")
         return
     descricao = descricao.strip()
 
+    # Valida data e lança um ValueError se formato for inválido
     try:
         datetime.strptime(data, "%Y-%m-%d")
     except ValueError:
         print('Digite uma data válida - YYYY-MM-DD.')
         return
 
+    # Regras de categoria por tipo
     if tipo == 'despesa' and not categoria:
         categoria = 'Sem categoria'
     if tipo == 'receita':
         categoria = None
 
+    # Dicionário com a transação já adicionada
     transacao = {
         'tipo': tipo,
         'descricao': descricao,
@@ -46,19 +76,28 @@ def adicionar_transacao(tipo, descricao, valor, data, categoria=None):
         'data': data,
         'categoria': categoria,
     }
+    
+    # Adicionando na lista global 'transação'
     transacoes.append(transacao)
     return transacao
 
 
+
 def listar_transacoes(filtro_tipo=None, filtro_categoria=None):
     lista = transacoes
+    ''''
+    Função que lista as transações inseridas pelo usuário por tipo (Receita ou despesa)
+    e categoria. 
+    '''
 
+    # Filtra por tipo quando este é informado.
     if filtro_tipo is not None:
         filtro_tipo = str(filtro_tipo).lower().strip()
         if filtro_tipo not in ('receita', 'despesa'):
             return []
         lista = [t for t in lista if t['tipo'] == filtro_tipo]
 
+    # Filtra por categoria, quando esta é informada.
     if filtro_categoria is not None:
         alvo = str(filtro_categoria).strip().casefold()
         lista = [
@@ -79,6 +118,10 @@ As funções abaixo calculam:
 """
 
 def calcular_saldo():
+    ''''
+    Retorna o saldo atual = soma(receitas) - soma(despesas)
+    '''
+
     total_receitas = 0.0
     total_despesas = 0.0
 
@@ -93,6 +136,11 @@ def calcular_saldo():
 
 
 def calcular_total_por_tipo(tipo):
+    """
+    Soma e retorna o total de `tipo` informado ('receita' ou 'despesa').
+    Se o tipo for inválido, imprime aviso e retorna 0.0.
+    """
+
     tipo = str(tipo).lower().strip()
     if tipo not in ('receita', 'despesa'):
         print('Tipo inválido, use receita ou despesa')
@@ -106,6 +154,10 @@ def calcular_total_por_tipo(tipo):
 
 
 def calcular_gastos_por_categoria():
+    ''''
+    soma o total dos gastos por categoria, retornando um dicionário 
+    '''
+
     gastos_por_categoria = {}
     for t in transacoes:
         if t['tipo'] == 'despesa':
@@ -121,6 +173,14 @@ def calcular_gastos_por_categoria():
 # RELATÓRIOS
 # ============================================
 def gerar_relatorio():
+    """
+    Gera um resumo geral das finanças:
+    - quantidade de transações
+    - total de receitas e despesas
+    - saldo final
+    - gastos por categoria
+    """
+
     total_receita = calcular_total_por_tipo('receita')
     total_despesa = calcular_total_por_tipo('despesa')
     saldo = calcular_saldo()
@@ -137,6 +197,10 @@ def gerar_relatorio():
 
 
 def exibir_extrato():
+    """
+    Exibe todas as transações registradas, formatadas em tabela.
+    """
+
     if not transacoes:
         print('Não há transações para exibir')
         return
@@ -155,7 +219,14 @@ def exibir_extrato():
 # ============================================
 # PERSISTÊNCIA
 # ============================================
+# Essas funções salvam e carregam as transações em um arquivo de texto local.
+
+
 def salvar_arquivo():
+    """
+    Salva todas as transações no arquivo `transacoes.txt`.
+    Cada linha segue o formato: tipo|descricao|valor|data|categoria
+    """
     with open(arquivo_dados, 'w', encoding='utf-8') as f:
         for t in transacoes:
             tipo = t['tipo']
@@ -169,6 +240,10 @@ def salvar_arquivo():
 
 
 def carregar_arquivo():
+    """
+    Carrega as transações do arquivo, se existir.
+    Valida os dados e adiciona à lista global `transacoes`.
+    """
     if not os.path.exists(arquivo_dados):
         return
 
@@ -201,6 +276,9 @@ def carregar_arquivo():
 # ============================================
 # MENU / MAIN
 # ============================================
+# Essa é a parte interativa do sistema, que roda no terminal.
+# O usuário escolhe opções no menu para adicionar, listar e salvar transações.
+
 def main():
     carregar_arquivo()
 
@@ -222,6 +300,7 @@ def main():
             break
 
         elif opcao == '1':
+            # Adicionar receita
             descricao = input('Descrição de receita: ').strip()
             try:
                 valor = float(input('Valor: ').replace(',', '.'))
@@ -233,6 +312,8 @@ def main():
             print("Receita adicionada com sucesso!")
 
         elif opcao == '2':
+            # Adicionar despesa
+
             descricao = input('Descrição de despesa: ').strip()
             try:
                 valor = float(input('Valor: ').replace(',', '.'))
@@ -245,6 +326,8 @@ def main():
             print('Despesa adicionada com sucesso')
 
         elif opcao == '3':
+            # Lista transações com filtros
+
             tipo = input('Filtrar por tipo (receita/despesa) ou Enter para todos: ').strip().lower() or None
             categoria = input('Filtrar por categoria ou Enter para todas: ').strip() or None
             lista = listar_transacoes(tipo, categoria)
@@ -258,9 +341,11 @@ def main():
                     print(f"{t['data']:10} | {t['tipo']:8} | R$ {t['valor']:8.2f} | {(t['categoria'] or '-')[:15]:15} | {t['descricao']}")
 
         elif opcao == '4':
+            # Exibe extrato completo
             exibir_extrato()
 
         elif opcao == '5':
+            # Gera o relatório resumido
             relatorio = gerar_relatorio()
             print("\n===== RELATÓRIO FINANCEIRO =====")
             print(f"Total de transações: {relatorio['quantidade_transacoes']}")
@@ -272,12 +357,13 @@ def main():
                 print(f" - {cat}: R$ {val:.2f}")
 
         elif opcao == '6':
+            # Salvar em arquivo manualmente
             salvar_arquivo()
             print(f"Transações salvas no arquivo '{arquivo_dados}' com sucesso")
 
         else:
             print("Opção inválida, tente novamente")
 
-
+# O ponto de entrada do programa: só roda o menu se for executado diretamente.
 if __name__ == "__main__":
     main()

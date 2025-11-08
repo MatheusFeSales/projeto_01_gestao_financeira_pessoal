@@ -365,340 +365,187 @@ code {
           : 'default'
     });
   </script>
-<h1 id="projeto-01-sistema-de-gest%C3%A3o-financeira-pessoal">Projeto 01: Sistema de Gestão Financeira Pessoal</h1>
-<h2 id="%F0%9F%93%8B-objetivo">📋 Objetivo</h2>
-<p>Desenvolver um sistema simples de gestão financeira pessoal que permita registrar receitas e despesas, calcular saldo atual e gerar relatórios básicos usando apenas os conceitos fundamentais de Python.</p>
-<h2 id="%F0%9F%97%BA%EF%B8%8F-diagrama-de-contexto">🗺️ Diagrama de Contexto</h2>
+<h1 id="%F0%9F%92%B0-sistema-de-gest%C3%A3o-financeira-pessoal-com-an%C3%A1lise-de-dados">💰 Sistema de Gestão Financeira Pessoal com Análise de Dados</h1>
+<p><strong>Disciplina:</strong> Programação para Ciência de Dados<br>
+<strong>Curso:</strong> MBA em Ciência de Dados – UNIFOR<br>
+<strong>Instrutor:</strong> Cássio Pinheiro<br>
+<strong>Integrante:</strong> Matheus Sales (2528052)<br>
+<strong>Data de Entrega:</strong> 14/11/2025</p>
+<hr>
+<h2 id="%F0%9F%8E%AF-objetivo-do-projeto">🎯 Objetivo do Projeto</h2>
+<p>Este projeto tem como objetivo desenvolver um sistema de gestão financeira pessoal em Python. O sistema permite o registro e acompanhamento de transações financeiras (receitas e despesas) e oferece ferramentas para análise de dados e visualização de resultados.</p>
+<p>O projeto está dividido em duas partes principais:</p>
+<ol>
+<li><strong>Aplicação Interativa (Terminal):</strong> Um script (<code>sistema_financeiro.py</code>) que oferece um menu para gerenciar finanças pessoais diretamente no terminal.</li>
+<li><strong>Análise de Dados (Jupyter Notebook):</strong> Um notebook (<code>sistema_financeiro.ipynb</code>) que utiliza dados simulados para realizar análises exploratórias e gerar gráficos com as bibliotecas <code>pandas</code> e <code>matplotlib</code>.</li>
+</ol>
+<hr>
+<h2 id="%E2%9C%A8-funcionalidades">✨ Funcionalidades</h2>
+<h3 id="aplica%C3%A7%C3%A3o-de-terminal-sistemafinanceiropy">Aplicação de Terminal (<code>sistema_financeiro.py</code>)</h3>
+<ul>
+<li><strong>Adicionar Transações:</strong> Registre receitas e despesas de forma simples.</li>
+<li><strong>Categorizar Despesas:</strong> Atribua categorias às suas despesas (ex: &quot;Alimentação&quot;, &quot;Transporte&quot;).</li>
+<li><strong>Listar Transações:</strong> Visualize todas as transações ou filtre por tipo (receita/despesa) e categoria.</li>
+<li><strong>Exibir Extrato:</strong> Gere um extrato formatado com todas as movimentações.</li>
+<li><strong>Gerar Relatório Financeiro:</strong> Obtenha um resumo completo com:
+<ul>
+<li>Total de receitas e despesas.</li>
+<li>Saldo atual.</li>
+<li>Gastos detalhados por categoria.</li>
+</ul>
+</li>
+<li><strong>Persistência de Dados:</strong> Salve suas transações em um arquivo (<code>transacoes.txt</code>) para que os dados não sejam perdidos ao fechar o sistema.</li>
+</ul>
+<h3 id="an%C3%A1lise-de-dados-sistemafinanceiroipynb">Análise de Dados (<code>sistema_financeiro.ipynb</code>)</h3>
+<p>O notebook utiliza um conjunto de dados simulado (<code>dados/transacoes_simuladas.csv</code>) para demonstrar a aplicação de técnicas de análise de dados:</p>
+<ul>
+<li><strong>Carregamento e Limpeza de Dados:</strong> Leitura de dados de um arquivo CSV e tratamento de colunas (datas, tipos, etc.).</li>
+<li><strong>Análises Geradas:</strong>
+<ul>
+<li>Cálculo do saldo mensal (receitas vs. despesas).</li>
+<li>Agregação de gastos por categoria.</li>
+</ul>
+</li>
+<li><strong>Visualizações (Gráficos):</strong>
+<ul>
+<li><strong>Receitas vs. Despesas:</strong> Gráfico de barras comparando o total de entradas e saídas.</li>
+<li><strong>Gastos por Categoria:</strong> Gráfico de barras horizontais para visualizar a distribuição dos gastos.</li>
+<li><strong>Evolução do Saldo Mensal:</strong> Gráfico de linhas que mostra a variação do saldo ao longo do tempo.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%8A-arquitetura-e-planejamento">📊 Arquitetura e Planejamento</h2>
+<p>Para ilustrar a arquitetura e o planejamento do projeto, foram criados os seguintes diagramas.</p>
+<h3 id="n%C3%ADvel-1-diagrama-de-contexto-c4">Nível 1: Diagrama de Contexto (C4)</h3>
+<p>O diagrama de contexto mostra a interação de alto nível entre o usuário e o sistema de gestão financeira.</p>
 <pre><code class="language-mermaid"><div class="mermaid">graph TD
-    A[Sistema de Gestão Financeira] --> B[Entrada de Dados]
-    B --> C[Processamento e Cálculos]
-    C --> D[Relatórios e Saída]
-    C --> E[Arquivo TXT<br/>Persistência]
-    D --> F[Usuário]
-    
-    style A fill:#e1f5ff
-    style B fill:#ffe1f5
-    style C fill:#e7ffe1
-    style D fill:#fff5e1
-    style E fill:#f5e1ff
+    subgraph "Sistema de Gestão Financeira Pessoal"
+        direction LR
+        style System fill:#1168bd,stroke:#0b4884,color:#fff
+
+        System("💰<br><b>Sistema de Gestão Financeira</b><br>Permite ao usuário gerenciar suas<br>finanças e analisar dados.")
+    end
+
+    Actor("🧑‍💻<br><b>Usuário</b><br>Uma pessoa que deseja<br>gerenciar suas finanças.")
+
+    Actor -->|"Usa"| System
+
+    style Actor fill:#08427b,stroke:#052e56,color:#fff
 </div></code></pre>
-<h2 id="%F0%9F%94%A7-funcionalidades-b%C3%A1sicas">🔧 Funcionalidades Básicas</h2>
+<h3 id="n%C3%ADvel-2-diagrama-de-cont%C3%AAineres-c4">Nível 2: Diagrama de Contêineres (C4)</h3>
+<p>Este diagrama detalha os principais &quot;contêineres&quot; (aplicações e armazenamentos de dados) que compõem o sistema.</p>
+<pre><code class="language-mermaid"><div class="mermaid">graph TD
+    subgraph "Sistema de Gestão Financeira Pessoal"
+        direction LR
+
+        subgraph "Aplicações"
+            direction TB
+            cli("<b>Aplicação de Terminal</b><br>(sistema_financeiro.py)<br><br>Permite registrar, listar e<br>analisar transações via CLI.")
+            notebook("<b>Jupyter Notebook</b><br>(sistema_financeiro.ipynb)<br><br>Realiza análise exploratória e<br>visualização de dados simulados.")
+        end
+
+        subgraph "Armazenamento"
+            direction TB
+            db_cli("[<b>Arquivo de Transações</b><br>(transacoes.txt)<br><br>Armazena os dados de<br>receitas e despesas da CLI.]")
+            db_notebook("[<b>Dados Simulados</b><br>(transacoes_simuladas.csv)<br><br>Fonte de dados para<br>análise no notebook.]")
+        end
+    end
+
+    Actor("🧑‍💻<br><b>Usuário</b>")
+
+    Actor -->|"Usa"| cli
+    Actor -->|"Executa e analisa em"| notebook
+
+    cli -->|"Lê/Escreve em"| db_cli
+    notebook -->|"Lê de"| db_notebook
+
+    style Actor fill:#08427b,stroke:#052e56,color:#fff
+</div></code></pre>
+<h3 id="desenvolvimento-do-projeto-gantt-chart">Desenvolvimento do Projeto (Gantt Chart)</h3>
+<p>O cronograma abaixo ilustra as principais etapas do desenvolvimento do projeto.</p>
+<pre><code class="language-mermaid"><div class="mermaid">gantt
+    title Cronograma de Desenvolvimento - Gestão Financeira
+    dateFormat  YYYY-MM-DD
+    axisFormat %d/%m
+
+    section Planejamento e Estrutura
+    Definição dos Requisitos      :done, 2025-10-27, 1d
+    Estrutura do Projeto          :done, after Definição dos Requisitos, 1d
+
+    section Desenvolvimento do Script (.py)
+    Funções de Transação          :done, 2025-10-29, 2d
+    Funções de Cálculo            :done, after Funções de Transação, 1d
+    Persistência de Dados         :done, after Funções de Cálculo, 1d
+    Menu Interativo (CLI)         :done, after Persistência de Dados, 1d
+
+    section Análise de Dados (.ipynb)
+    Dataset e Limpeza de Dados    :done, 2025-11-05, 1d
+    Análises e Gráficos           :done, after Dataset e Limpeza de Dados, 2d
+
+    section Documentação e Finalização
+    Redação do README.md          :active, 2025-11-08, 1d
+    Diagramas (C4 e Gantt)        :active, after Redação do README.md, 1d
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%9B%A0%EF%B8%8F-tecnologias-utilizadas">🛠️ Tecnologias Utilizadas</h2>
+<ul>
+<li><strong>Linguagem:</strong> Python 3</li>
+<li><strong>Bibliotecas (para o Notebook):</strong>
+<ul>
+<li><code>pandas</code>: Para manipulação e análise de dados.</li>
+<li><code>matplotlib</code>: Para a criação de gráficos e visualizações.</li>
+</ul>
+</li>
+<li><strong>Ambiente:</strong> O projeto pode ser executado em um ambiente virtual Python (<code>venv</code>) para gerenciar dependências.</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%9A%80-como-executar">🚀 Como Executar</h2>
+<h3 id="1-pr%C3%A9-requisitos">1. Pré-requisitos</h3>
+<ul>
+<li>Ter o Python 3 instalado.</li>
+<li>(Opcional, mas recomendado) Criar e ativar um ambiente virtual:<pre class="hljs"><code><div>python3 -m venv venv
+<span class="hljs-built_in">source</span> venv/bin/activate  <span class="hljs-comment"># No macOS/Linux</span>
+<span class="hljs-comment"># venv\Scripts\activate  # No Windows</span>
+</div></code></pre>
+</li>
+<li>Instalar as dependências para o notebook:<pre class="hljs"><code><div>pip install pandas matplotlib
+</div></code></pre>
+</li>
+</ul>
+<h3 id="2-executando-a-aplica%C3%A7%C3%A3o-de-terminal">2. Executando a Aplicação de Terminal</h3>
+<p>Para iniciar o sistema de gestão financeira, execute o seguinte comando no terminal:</p>
+<pre class="hljs"><code><div>python sistema_financeiro.py
+</div></code></pre>
+<p>Você verá um menu interativo para utilizar as funcionalidades do sistema.</p>
+<h3 id="3-executando-o-notebook-de-an%C3%A1lise">3. Executando o Notebook de Análise</h3>
+<p>Para explorar a análise de dados, você precisará do Jupyter Notebook ou JupyterLab:</p>
 <ol>
-<li>
-<p><strong>Cadastro de Transações</strong></p>
-<ul>
-<li>Registrar receitas (descrição, valor, data)</li>
-<li>Registrar despesas (descrição, valor, data, categoria)</li>
-<li>Validar valores positivos</li>
-</ul>
+<li>Instale o Jupyter (caso não tenha):<pre class="hljs"><code><div>pip install notebook
+</div></code></pre>
 </li>
-<li>
-<p><strong>Cálculos Financeiros</strong></p>
-<ul>
-<li>Calcular saldo atual (receitas - despesas)</li>
-<li>Calcular total de receitas por período</li>
-<li>Calcular total de despesas por período</li>
-<li>Calcular gastos por categoria</li>
-</ul>
+<li>Inicie o Jupyter:<pre class="hljs"><code><div>jupyter notebook
+</div></code></pre>
 </li>
-<li>
-<p><strong>Relatórios</strong></p>
-<ul>
-<li>Exibir extrato de transações</li>
-<li>Mostrar resumo financeiro (saldo, totais, categorias)</li>
-<li>Filtrar transações por período ou categoria</li>
-</ul>
-</li>
-<li>
-<p><strong>Persistência de Dados</strong></p>
-<ul>
-<li>Salvar transações em arquivo TXT</li>
-<li>Carregar transações do arquivo</li>
-<li>Manter histórico de transações</li>
-</ul>
-</li>
+<li>No seu navegador, abra o arquivo <code>sistema_financeiro.ipynb</code>.</li>
 </ol>
-<h2 id="%F0%9F%93%8A-estrutura-de-dados">📊 Estrutura de Dados</h2>
-<h3 id="entrada">Entrada</h3>
-<pre class="hljs"><code><div><span class="hljs-comment"># Receita</span>
-receita = {
-    <span class="hljs-string">'tipo'</span>: <span class="hljs-string">'receita'</span>,
-    <span class="hljs-string">'descricao'</span>: <span class="hljs-string">'Salário'</span>,
-    <span class="hljs-string">'valor'</span>: <span class="hljs-number">5000.00</span>,
-    <span class="hljs-string">'data'</span>: <span class="hljs-string">'2024-01-15'</span>
-}
-
-<span class="hljs-comment"># Despesa</span>
-despesa = {
-    <span class="hljs-string">'tipo'</span>: <span class="hljs-string">'despesa'</span>,
-    <span class="hljs-string">'descricao'</span>: <span class="hljs-string">'Supermercado'</span>,
-    <span class="hljs-string">'valor'</span>: <span class="hljs-number">450.00</span>,
-    <span class="hljs-string">'data'</span>: <span class="hljs-string">'2024-01-20'</span>,
-    <span class="hljs-string">'categoria'</span>: <span class="hljs-string">'Alimentação'</span>
-}
+<p><strong>Observação:</strong> O notebook utiliza um arquivo <code>dados/transacoes_simuladas.csv</code>. Certifique-se de que este arquivo exista no diretório <code>dados</code> para executar a análise.</p>
+<hr>
+<h2 id="%F0%9F%93%82-estrutura-do-projeto">📂 Estrutura do Projeto</h2>
+<pre class="hljs"><code><div>/projeto_01_gestao_financeira_pessoal
+├── dados/
+│   └── transacoes.txt          # Arquivo de dados da aplicação de terminal
+├── relatorios/
+│   └── .gitkeep                # Pasta para futuros relatórios
+├── .gitignore                  # Arquivos a serem ignorados pelo Git
+├── README.md                   # Documentação do projeto
+├── requirements.txt            # Lista de dependências
+├── sistema_financeiro.py       # Script principal da aplicação de terminal
+└── sistema_financeiro.ipynb    # Notebook para análise de dados
 </div></code></pre>
-<h3 id="sa%C3%ADda">Saída</h3>
-<pre class="hljs"><code><div><span class="hljs-comment"># Lista de transações</span>
-transacoes = [
-    {<span class="hljs-string">'tipo'</span>: <span class="hljs-string">'receita'</span>, <span class="hljs-string">'descricao'</span>: <span class="hljs-string">'Salário'</span>, <span class="hljs-string">'valor'</span>: <span class="hljs-number">5000.00</span>, <span class="hljs-string">'data'</span>: <span class="hljs-string">'2024-01-15'</span>},
-    {<span class="hljs-string">'tipo'</span>: <span class="hljs-string">'despesa'</span>, <span class="hljs-string">'descricao'</span>: <span class="hljs-string">'Supermercado'</span>, <span class="hljs-string">'valor'</span>: <span class="hljs-number">450.00</span>, <span class="hljs-string">'data'</span>: <span class="hljs-string">'2024-01-20'</span>, <span class="hljs-string">'categoria'</span>: <span class="hljs-string">'Alimentação'</span>},
-    <span class="hljs-comment"># ... mais transações</span>
-]
-
-<span class="hljs-comment"># Relatório</span>
-relatorio = {
-    <span class="hljs-string">'saldo_atual'</span>: <span class="hljs-number">4550.00</span>,
-    <span class="hljs-string">'total_receitas'</span>: <span class="hljs-number">5000.00</span>,
-    <span class="hljs-string">'total_despesas'</span>: <span class="hljs-number">450.00</span>,
-    <span class="hljs-string">'gastos_por_categoria'</span>: {
-        <span class="hljs-string">'Alimentação'</span>: <span class="hljs-number">450.00</span>,
-        <span class="hljs-string">'Transporte'</span>: <span class="hljs-number">200.00</span>
-    }
-}
-</div></code></pre>
-<h2 id="%F0%9F%92%BB-requisitos-t%C3%A9cnicos">💻 Requisitos Técnicos</h2>
-<ul>
-<li>Python 3.8+</li>
-<li>Conhecimentos em:
-<ul>
-<li>Tipos de dados (int, float, str, dict, list)</li>
-<li>Estruturas de controle (if/else, for, while)</li>
-<li>Funções e documentação</li>
-<li>Compreensões de lista e dicionário</li>
-<li>Manipulação de arquivos (leitura/escrita)</li>
-<li>Tratamento de erros básico</li>
-</ul>
-</li>
-</ul>
-<h2 id="%F0%9F%93%A6-entreg%C3%A1veis">📦 Entregáveis</h2>
-<ol>
-<li>
-<p><strong>Código Python</strong> (<code>sistema_financeiro.py</code>)</p>
-<ul>
-<li>Módulo principal com todas as funcionalidades</li>
-<li>Funções bem documentadas</li>
-<li>Tratamento de erros básico</li>
-</ul>
-</li>
-<li>
-<p><strong>Arquivo de Dados</strong> (<code>transacoes.txt</code>)</p>
-<ul>
-<li>Formato estruturado para persistência</li>
-<li>Exemplo com algumas transações</li>
-</ul>
-</li>
-<li>
-<p><strong>Relatório de Testes</strong> (<code>testes.md</code>)</p>
-<ul>
-<li>Cenários testados</li>
-<li>Resultados obtidos</li>
-</ul>
-</li>
-<li>
-<p><strong>Documentação</strong> (<code>README.md</code>)</p>
-<ul>
-<li>Como usar o sistema</li>
-<li>Exemplos de uso</li>
-</ul>
-</li>
-</ol>
-<h2 id="%F0%9F%92%A1-dicas">💡 Dicas</h2>
-<ol>
-<li>Use dicionários para representar transações</li>
-<li>Use listas para armazenar múltiplas transações</li>
-<li>Implemente funções para cada funcionalidade:
-<ul>
-<li><code>adicionar_transacao()</code></li>
-<li><code>calcular_saldo()</code></li>
-<li><code>filtrar_por_categoria()</code></li>
-<li><code>gerar_relatorio()</code></li>
-<li><code>salvar_arquivo()</code></li>
-<li><code>carregar_arquivo()</code></li>
-</ul>
-</li>
-<li>Use list comprehension para filtrar transações</li>
-<li>Use dict comprehension para agrupar por categoria</li>
-<li>Formate números monetários com 2 casas decimais</li>
-<li>Valide entradas do usuário antes de processar</li>
-</ol>
-<h2 id="%F0%9F%8F%97%EF%B8%8F-esqueleto-do-projeto">🏗️ Esqueleto do Projeto</h2>
-<pre class="hljs"><code><div><span class="hljs-comment"># sistema_financeiro.py</span>
-
-<span class="hljs-comment"># ============================================</span>
-<span class="hljs-comment"># Sistema de Gestão Financeira Pessoal</span>
-<span class="hljs-comment"># ============================================</span>
-
-transacoes = []  <span class="hljs-comment"># Lista global para armazenar transações</span>
-arquivo_dados = <span class="hljs-string">"transacoes.txt"</span>
-
-<span class="hljs-comment"># ============================================</span>
-<span class="hljs-comment"># FUNÇÕES DE TRANSAÇÕES</span>
-<span class="hljs-comment"># ============================================</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adicionar_transacao</span><span class="hljs-params">(tipo, descricao, valor, data, categoria=None)</span>:</span>
-    <span class="hljs-string">"""
-    Adiciona uma nova transação à lista.
-    
-    Args:
-        tipo (str): 'receita' ou 'despesa'
-        descricao (str): Descrição da transação
-        valor (float): Valor da transação
-        data (str): Data no formato 'YYYY-MM-DD'
-        categoria (str, optional): Categoria da despesa
-    
-    Returns:
-        dict: Transação criada
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Implementar validações</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Criar dicionário da transação</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Adicionar à lista</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Retornar transação</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">listar_transacoes</span><span class="hljs-params">(filtro_tipo=None, filtro_categoria=None)</span>:</span>
-    <span class="hljs-string">"""
-    Lista todas as transações com filtros opcionais.
-    
-    Args:
-        filtro_tipo (str, optional): 'receita' ou 'despesa'
-        filtro_categoria (str, optional): Nome da categoria
-    
-    Returns:
-        list: Lista de transações filtradas
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Usar list comprehension para filtrar</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-comment"># ============================================</span>
-<span class="hljs-comment"># FUNÇÕES DE CÁLCULOS</span>
-<span class="hljs-comment"># ============================================</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcular_saldo</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""
-    Calcula o saldo atual (receitas - despesas).
-    
-    Returns:
-        float: Saldo atual
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Separar receitas e despesas</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Calcular totais</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Retornar diferença</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcular_total_por_tipo</span><span class="hljs-params">(tipo)</span>:</span>
-    <span class="hljs-string">"""
-    Calcula total de receitas ou despesas.
-    
-    Args:
-        tipo (str): 'receita' ou 'despesa'
-    
-    Returns:
-        float: Total do tipo especificado
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Filtrar por tipo</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Somar valores</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcular_gastos_por_categoria</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""
-    Calcula total de gastos agrupados por categoria.
-    
-    Returns:
-        dict: Dicionário {categoria: total}
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Filtrar apenas despesas</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Usar dict comprehension para agrupar</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-comment"># ============================================</span>
-<span class="hljs-comment"># FUNÇÕES DE RELATÓRIOS</span>
-<span class="hljs-comment"># ============================================</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gerar_relatorio</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""
-    Gera relatório completo das finanças.
-    
-    Returns:
-        dict: Dicionário com todas as informações
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Calcular todos os valores</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Criar dicionário de relatório</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">exibir_extrato</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""
-    Exibe extrato formatado de todas as transações.
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Iterar sobre transações</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Formatar e exibir</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-comment"># ============================================</span>
-<span class="hljs-comment"># FUNÇÕES DE PERSISTÊNCIA</span>
-<span class="hljs-comment"># ============================================</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">salvar_arquivo</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""
-    Salva transações em arquivo TXT.
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Abrir arquivo em modo escrita</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Converter transações para formato legível</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Escrever no arquivo</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">carregar_arquivo</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""
-    Carrega transações do arquivo TXT.
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Verificar se arquivo existe</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Ler arquivo linha por linha</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Converter de volta para dicionários</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Adicionar à lista transacoes</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-comment"># ============================================</span>
-<span class="hljs-comment"># FUNÇÃO PRINCIPAL</span>
-<span class="hljs-comment"># ============================================</span>
-
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""
-    Função principal do programa.
-    """</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Carregar dados do arquivo</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Menu interativo</span>
-    <span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> Opções: adicionar, listar, relatório, salvar, sair</span>
-    <span class="hljs-keyword">pass</span>
-
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
-    main()
-</div></code></pre>
-<h2 id="%F0%9F%93%9D-exemplo-de-uso">📝 Exemplo de Uso</h2>
-<pre class="hljs"><code><div><span class="hljs-comment"># Exemplo de uso do sistema</span>
-
-<span class="hljs-comment"># Adicionar uma receita</span>
-adicionar_transacao(
-    tipo=<span class="hljs-string">'receita'</span>,
-    descricao=<span class="hljs-string">'Salário Janeiro'</span>,
-    valor=<span class="hljs-number">5000.00</span>,
-    data=<span class="hljs-string">'2024-01-05'</span>
-)
-
-<span class="hljs-comment"># Adicionar uma despesa</span>
-adicionar_transacao(
-    tipo=<span class="hljs-string">'despesa'</span>,
-    descricao=<span class="hljs-string">'Supermercado'</span>,
-    valor=<span class="hljs-number">450.00</span>,
-    data=<span class="hljs-string">'2024-01-10'</span>,
-    categoria=<span class="hljs-string">'Alimentação'</span>
-)
-
-<span class="hljs-comment"># Gerar relatório</span>
-relatorio = gerar_relatorio()
-print(<span class="hljs-string">f"Saldo atual: R$ <span class="hljs-subst">{relatorio[<span class="hljs-string">'saldo_atual'</span>]:<span class="hljs-number">.2</span>f}</span>"</span>)
-
-<span class="hljs-comment"># Salvar em arquivo</span>
-salvar_arquivo()
-</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%88-conclus%C3%A3o">📈 Conclusão</h2>
+<p>Este projeto integra conceitos de programação estruturada com análise de dados. O script <code>.py</code> oferece uma ferramenta prática e funcional para gestão financeira, enquanto o notebook <code>.ipynb</code> demonstra como analisar e extrair insights de dados financeiros usando <code>pandas</code> e <code>matplotlib</code>. O trabalho reflete a aplicação dos fundamentos aprendidos na disciplina, com foco em modularidade, manipulação de dados e clareza de código.</p>
 
 </body>
 </html>

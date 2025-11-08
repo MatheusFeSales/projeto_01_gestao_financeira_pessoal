@@ -1,0 +1,50 @@
+# ==========================================
+# 🐍 PYTHON / JUPYTER / VS CODE - GITIGNORE
+# ==========================================
+
+# ---- Ambientes virtuais ----
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# ---- Arquivos de sistema ----
+.DS_Store
+Thumbs.db
+
+# ---- Caches Python ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# ---- Configuração do Jupyter ----
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ---- Arquivos de log ou temporários ----
+*.log
+*.tmp
+*.bak
+
+# ---- VS Code settings ----
+.vscode/
+.history/
+
+# ---- Dados grandes ou sensíveis ----
+dados/*.csv
+dados/*.txt
+!dados/transacoes_simuladas.csv    # mantém o CSV principal no repositório
+!dados/transacoes.txt              # mantém o TXT de saída principal
+
+# ---- Arquivos HTML ou intermediários de relatório ----
+relatorios/*.html
+
+# ---- Outros ----
+*.sqlite3
+*.db
+*.zip
+*.tar
+*.gz

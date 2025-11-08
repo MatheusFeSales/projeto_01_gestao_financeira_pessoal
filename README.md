@@ -1,321 +1,211 @@
-# Projeto 01: Sistema de Gestão Financeira Pessoal
+# 💰 Sistema de Gestão Financeira Pessoal com Análise de Dados
 
-## 📋 Objetivo
+**Disciplina:** Programação para Ciência de Dados  
+**Curso:** MBA em Ciência de Dados – UNIFOR  
+**Instrutor:** Cássio Pinheiro  
+**Integrante:** Matheus Sales (2528052)  
+**Data de Entrega:** 14/11/2025
 
-Desenvolver um sistema simples de gestão financeira pessoal que permita registrar receitas e despesas, calcular saldo atual e gerar relatórios básicos usando apenas os conceitos fundamentais de Python.
+---
 
-## 🗺️ Diagrama de Contexto
+## 🎯 Objetivo do Projeto
+
+Este projeto tem como objetivo desenvolver um sistema de gestão financeira pessoal em Python. O sistema permite o registro e acompanhamento de transações financeiras (receitas e despesas) e oferece ferramentas para análise de dados e visualização de resultados.
+
+O projeto está dividido em duas partes principais:
+1.  **Aplicação Interativa (Terminal):** Um script (`sistema_financeiro.py`) que oferece um menu para gerenciar finanças pessoais diretamente no terminal.
+2.  **Análise de Dados (Jupyter Notebook):** Um notebook (`sistema_financeiro.ipynb`) que utiliza dados simulados para realizar análises exploratórias e gerar gráficos com as bibliotecas `pandas` e `matplotlib`.
+
+---
+
+## ✨ Funcionalidades
+
+### Aplicação de Terminal (`sistema_financeiro.py`)
+
+- **Adicionar Transações:** Registre receitas e despesas de forma simples.
+- **Categorizar Despesas:** Atribua categorias às suas despesas (ex: "Alimentação", "Transporte").
+- **Listar Transações:** Visualize todas as transações ou filtre por tipo (receita/despesa) e categoria.
+- **Exibir Extrato:** Gere um extrato formatado com todas as movimentações.
+- **Gerar Relatório Financeiro:** Obtenha um resumo completo com:
+  - Total de receitas e despesas.
+  - Saldo atual.
+  - Gastos detalhados por categoria.
+- **Persistência de Dados:** Salve suas transações em um arquivo (`transacoes.txt`) para que os dados não sejam perdidos ao fechar o sistema.
+
+### Análise de Dados (`sistema_financeiro.ipynb`)
+
+O notebook utiliza um conjunto de dados simulado (`dados/transacoes_simuladas.csv`) para demonstrar a aplicação de técnicas de análise de dados:
+
+- **Carregamento e Limpeza de Dados:** Leitura de dados de um arquivo CSV e tratamento de colunas (datas, tipos, etc.).
+- **Análises Geradas:**
+  - Cálculo do saldo mensal (receitas vs. despesas).
+  - Agregação de gastos por categoria.
+- **Visualizações (Gráficos):**
+  - **Receitas vs. Despesas:** Gráfico de barras comparando o total de entradas e saídas.
+  - **Gastos por Categoria:** Gráfico de barras horizontais para visualizar a distribuição dos gastos.
+  - **Evolução do Saldo Mensal:** Gráfico de linhas que mostra a variação do saldo ao longo do tempo.
+
+---
+
+## 📊 Arquitetura e Planejamento
+
+Para ilustrar a arquitetura e o planejamento do projeto, foram criados os seguintes diagramas.
+
+### Nível 1: Diagrama de Contexto (C4)
+
+O diagrama de contexto mostra a interação de alto nível entre o usuário e o sistema de gestão financeira.
 
 ```mermaid
 graph TD
-    A[Sistema de Gestão Financeira] --> B[Entrada de Dados]
-    B --> C[Processamento e Cálculos]
-    C --> D[Relatórios e Saída]
-    C --> E[Arquivo TXT<br/>Persistência]
-    D --> F[Usuário]
-    
-    style A fill:#e1f5ff
-    style B fill:#ffe1f5
-    style C fill:#e7ffe1
-    style D fill:#fff5e1
-    style E fill:#f5e1ff
+    subgraph "Sistema de Gestão Financeira Pessoal"
+        direction LR
+        style System fill:#1168bd,stroke:#0b4884,color:#fff
+
+        System("💰<br><b>Sistema de Gestão Financeira</b><br>Permite ao usuário gerenciar suas<br>finanças e analisar dados.")
+    end
+
+    Actor("🧑‍💻<br><b>Usuário</b><br>Uma pessoa que deseja<br>gerenciar suas finanças.")
+
+    Actor -->|"Usa"| System
+
+    style Actor fill:#08427b,stroke:#052e56,color:#fff
 ```
 
-## 🔧 Funcionalidades Básicas
+### Nível 2: Diagrama de Contêineres (C4)
 
-1. **Cadastro de Transações**
-   - Registrar receitas (descrição, valor, data)
-   - Registrar despesas (descrição, valor, data, categoria)
-   - Validar valores positivos
+Este diagrama detalha os principais "contêineres" (aplicações e armazenamentos de dados) que compõem o sistema.
 
-2. **Cálculos Financeiros**
-   - Calcular saldo atual (receitas - despesas)
-   - Calcular total de receitas por período
-   - Calcular total de despesas por período
-   - Calcular gastos por categoria
+```mermaid
+graph TD
+    subgraph "Sistema de Gestão Financeira Pessoal"
+        direction LR
 
-3. **Relatórios**
-   - Exibir extrato de transações
-   - Mostrar resumo financeiro (saldo, totais, categorias)
-   - Filtrar transações por período ou categoria
+        subgraph "Aplicações"
+            direction TB
+            cli("<b>Aplicação de Terminal</b><br>(sistema_financeiro.py)<br><br>Permite registrar, listar e<br>analisar transações via CLI.")
+            notebook("<b>Jupyter Notebook</b><br>(sistema_financeiro.ipynb)<br><br>Realiza análise exploratória e<br>visualização de dados simulados.")
+        end
 
-4. **Persistência de Dados**
-   - Salvar transações em arquivo TXT
-   - Carregar transações do arquivo
-   - Manter histórico de transações
+        subgraph "Armazenamento"
+            direction TB
+            db_cli("[<b>Arquivo de Transações</b><br>(transacoes.txt)<br><br>Armazena os dados de<br>receitas e despesas da CLI.]")
+            db_notebook("[<b>Dados Simulados</b><br>(transacoes_simuladas.csv)<br><br>Fonte de dados para<br>análise no notebook.]")
+        end
+    end
 
-## 📊 Estrutura de Dados
+    Actor("🧑‍💻<br><b>Usuário</b>")
 
-### Entrada
+    Actor -->|"Usa"| cli
+    Actor -->|"Executa e analisa em"| notebook
 
-```python
-# Receita
-receita = {
-    'tipo': 'receita',
-    'descricao': 'Salário',
-    'valor': 5000.00,
-    'data': '2024-01-15'
-}
+    cli -->|"Lê/Escreve em"| db_cli
+    notebook -->|"Lê de"| db_notebook
 
-# Despesa
-despesa = {
-    'tipo': 'despesa',
-    'descricao': 'Supermercado',
-    'valor': 450.00,
-    'data': '2024-01-20',
-    'categoria': 'Alimentação'
-}
+    style Actor fill:#08427b,stroke:#052e56,color:#fff
 ```
 
-### Saída
+### Desenvolvimento do Projeto (Gantt Chart)
 
-```python
-# Lista de transações
-transacoes = [
-    {'tipo': 'receita', 'descricao': 'Salário', 'valor': 5000.00, 'data': '2024-01-15'},
-    {'tipo': 'despesa', 'descricao': 'Supermercado', 'valor': 450.00, 'data': '2024-01-20', 'categoria': 'Alimentação'},
-    # ... mais transações
-]
+O cronograma abaixo ilustra as principais etapas do desenvolvimento do projeto.
 
-# Relatório
-relatorio = {
-    'saldo_atual': 4550.00,
-    'total_receitas': 5000.00,
-    'total_despesas': 450.00,
-    'gastos_por_categoria': {
-        'Alimentação': 450.00,
-        'Transporte': 200.00
-    }
-}
+```mermaid
+gantt
+    title Cronograma de Desenvolvimento - Gestão Financeira
+    dateFormat  YYYY-MM-DD
+    axisFormat %d/%m
+
+    section Planejamento e Estrutura
+    Definição dos Requisitos      :done, 2025-10-27, 1d
+    Estrutura do Projeto          :done, after Definição dos Requisitos, 1d
+
+    section Desenvolvimento do Script (.py)
+    Funções de Transação          :done, 2025-10-29, 2d
+    Funções de Cálculo            :done, after Funções de Transação, 1d
+    Persistência de Dados         :done, after Funções de Cálculo, 1d
+    Menu Interativo (CLI)         :done, after Persistência de Dados, 1d
+
+    section Análise de Dados (.ipynb)
+    Dataset e Limpeza de Dados    :done, 2025-11-05, 1d
+    Análises e Gráficos           :done, after Dataset e Limpeza de Dados, 2d
+
+    section Documentação e Finalização
+    Redação do README.md          :active, 2025-11-08, 1d
+    Diagramas (C4 e Gantt)        :active, after Redação do README.md, 1d
 ```
 
-## 💻 Requisitos Técnicos
+---
 
-- Python 3.8+
-- Conhecimentos em:
-  - Tipos de dados (int, float, str, dict, list)
-  - Estruturas de controle (if/else, for, while)
-  - Funções e documentação
-  - Compreensões de lista e dicionário
-  - Manipulação de arquivos (leitura/escrita)
-  - Tratamento de erros básico
+## 🛠️ Tecnologias Utilizadas
 
-## 📦 Entregáveis
+- **Linguagem:** Python 3
+- **Bibliotecas (para o Notebook):**
+  - `pandas`: Para manipulação e análise de dados.
+  - `matplotlib`: Para a criação de gráficos e visualizações.
+- **Ambiente:** O projeto pode ser executado em um ambiente virtual Python (`venv`) para gerenciar dependências.
 
-1. **Código Python** (`sistema_financeiro.py`)
-   - Módulo principal com todas as funcionalidades
-   - Funções bem documentadas
-   - Tratamento de erros básico
+---
 
-2. **Arquivo de Dados** (`transacoes.txt`)
-   - Formato estruturado para persistência
-   - Exemplo com algumas transações
+## 🚀 Como Executar
 
-3. **Relatório de Testes** (`testes.md`)
-   - Cenários testados
-   - Resultados obtidos
+### 1. Pré-requisitos
 
-4. **Documentação** (`README.md`)
-   - Como usar o sistema
-   - Exemplos de uso
+- Ter o Python 3 instalado.
+- (Opcional, mas recomendado) Criar e ativar um ambiente virtual:
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate  # No macOS/Linux
+  # venv\Scripts\activate  # No Windows
+  ```
+- Instalar as dependências para o notebook:
+  ```bash
+  pip install pandas matplotlib
+  ```
 
-## 💡 Dicas
+### 2. Executando a Aplicação de Terminal
 
-1. Use dicionários para representar transações
-2. Use listas para armazenar múltiplas transações
-3. Implemente funções para cada funcionalidade:
-   - `adicionar_transacao()`
-   - `calcular_saldo()`
-   - `filtrar_por_categoria()`
-   - `gerar_relatorio()`
-   - `salvar_arquivo()`
-   - `carregar_arquivo()`
-4. Use list comprehension para filtrar transações
-5. Use dict comprehension para agrupar por categoria
-6. Formate números monetários com 2 casas decimais
-7. Valide entradas do usuário antes de processar
+Para iniciar o sistema de gestão financeira, execute o seguinte comando no terminal:
 
-## 🏗️ Esqueleto do Projeto
-
-```python
-# sistema_financeiro.py
-
-# ============================================
-# Sistema de Gestão Financeira Pessoal
-# ============================================
-
-transacoes = []  # Lista global para armazenar transações
-arquivo_dados = "transacoes.txt"
-
-# ============================================
-# FUNÇÕES DE TRANSAÇÕES
-# ============================================
-
-def adicionar_transacao(tipo, descricao, valor, data, categoria=None):
-    """
-    Adiciona uma nova transação à lista.
-    
-    Args:
-        tipo (str): 'receita' ou 'despesa'
-        descricao (str): Descrição da transação
-        valor (float): Valor da transação
-        data (str): Data no formato 'YYYY-MM-DD'
-        categoria (str, optional): Categoria da despesa
-    
-    Returns:
-        dict: Transação criada
-    """
-    # TODO: Implementar validações
-    # TODO: Criar dicionário da transação
-    # TODO: Adicionar à lista
-    # TODO: Retornar transação
-    pass
-
-def listar_transacoes(filtro_tipo=None, filtro_categoria=None):
-    """
-    Lista todas as transações com filtros opcionais.
-    
-    Args:
-        filtro_tipo (str, optional): 'receita' ou 'despesa'
-        filtro_categoria (str, optional): Nome da categoria
-    
-    Returns:
-        list: Lista de transações filtradas
-    """
-    # TODO: Usar list comprehension para filtrar
-    pass
-
-# ============================================
-# FUNÇÕES DE CÁLCULOS
-# ============================================
-
-def calcular_saldo():
-    """
-    Calcula o saldo atual (receitas - despesas).
-    
-    Returns:
-        float: Saldo atual
-    """
-    # TODO: Separar receitas e despesas
-    # TODO: Calcular totais
-    # TODO: Retornar diferença
-    pass
-
-def calcular_total_por_tipo(tipo):
-    """
-    Calcula total de receitas ou despesas.
-    
-    Args:
-        tipo (str): 'receita' ou 'despesa'
-    
-    Returns:
-        float: Total do tipo especificado
-    """
-    # TODO: Filtrar por tipo
-    # TODO: Somar valores
-    pass
-
-def calcular_gastos_por_categoria():
-    """
-    Calcula total de gastos agrupados por categoria.
-    
-    Returns:
-        dict: Dicionário {categoria: total}
-    """
-    # TODO: Filtrar apenas despesas
-    # TODO: Usar dict comprehension para agrupar
-    pass
-
-# ============================================
-# FUNÇÕES DE RELATÓRIOS
-# ============================================
-
-def gerar_relatorio():
-    """
-    Gera relatório completo das finanças.
-    
-    Returns:
-        dict: Dicionário com todas as informações
-    """
-    # TODO: Calcular todos os valores
-    # TODO: Criar dicionário de relatório
-    pass
-
-def exibir_extrato():
-    """
-    Exibe extrato formatado de todas as transações.
-    """
-    # TODO: Iterar sobre transações
-    # TODO: Formatar e exibir
-    pass
-
-# ============================================
-# FUNÇÕES DE PERSISTÊNCIA
-# ============================================
-
-def salvar_arquivo():
-    """
-    Salva transações em arquivo TXT.
-    """
-    # TODO: Abrir arquivo em modo escrita
-    # TODO: Converter transações para formato legível
-    # TODO: Escrever no arquivo
-    pass
-
-def carregar_arquivo():
-    """
-    Carrega transações do arquivo TXT.
-    """
-    # TODO: Verificar se arquivo existe
-    # TODO: Ler arquivo linha por linha
-    # TODO: Converter de volta para dicionários
-    # TODO: Adicionar à lista transacoes
-    pass
-
-# ============================================
-# FUNÇÃO PRINCIPAL
-# ============================================
-
-def main():
-    """
-    Função principal do programa.
-    """
-    # TODO: Carregar dados do arquivo
-    # TODO: Menu interativo
-    # TODO: Opções: adicionar, listar, relatório, salvar, sair
-    pass
-
-if __name__ == "__main__":
-    main()
+```bash
+python sistema_financeiro.py
 ```
 
-## 📝 Exemplo de Uso
+Você verá um menu interativo para utilizar as funcionalidades do sistema.
 
-```python
-# Exemplo de uso do sistema
+### 3. Executando o Notebook de Análise
 
-# Adicionar uma receita
-adicionar_transacao(
-    tipo='receita',
-    descricao='Salário Janeiro',
-    valor=5000.00,
-    data='2024-01-05'
-)
+Para explorar a análise de dados, você precisará do Jupyter Notebook ou JupyterLab:
 
-# Adicionar uma despesa
-adicionar_transacao(
-    tipo='despesa',
-    descricao='Supermercado',
-    valor=450.00,
-    data='2024-01-10',
-    categoria='Alimentação'
-)
+1.  Instale o Jupyter (caso não tenha):
+    ```bash
+    pip install notebook
+    ```
+2.  Inicie o Jupyter:
+    ```bash
+    jupyter notebook
+    ```
+3.  No seu navegador, abra o arquivo `sistema_financeiro.ipynb`.
 
-# Gerar relatório
-relatorio = gerar_relatorio()
-print(f"Saldo atual: R$ {relatorio['saldo_atual']:.2f}")
+**Observação:** O notebook utiliza um arquivo `dados/transacoes_simuladas.csv`. Certifique-se de que este arquivo exista no diretório `dados` para executar a análise.
 
-# Salvar em arquivo
-salvar_arquivo()
+---
+
+## 📂 Estrutura do Projeto
+
+```
+/projeto_01_gestao_financeira_pessoal
+├── dados/
+│   └── transacoes.txt          # Arquivo de dados da aplicação de terminal
+├── relatorios/
+│   └── .gitkeep                # Pasta para futuros relatórios
+├── .gitignore                  # Arquivos a serem ignorados pelo Git
+├── README.md                   # Documentação do projeto
+├── requirements.txt            # Lista de dependências
+├── sistema_financeiro.py       # Script principal da aplicação de terminal
+└── sistema_financeiro.ipynb    # Notebook para análise de dados
 ```
 
+---
+
+## 📈 Conclusão
+
+Este projeto integra conceitos de programação estruturada com análise de dados. O script `.py` oferece uma ferramenta prática e funcional para gestão financeira, enquanto o notebook `.ipynb` demonstra como analisar e extrair insights de dados financeiros usando `pandas` e `matplotlib`. O trabalho reflete a aplicação dos fundamentos aprendidos na disciplina, com foco em modularidade, manipulação de dados e clareza de código.
