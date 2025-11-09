@@ -48,3 +48,7 @@ relatorios/*.html
 *.zip
 *.tar
 *.gz
+
+# Arquivos de orientação (não enviar para o GitHub)
+orientacoes.md
+orientacoes.html
