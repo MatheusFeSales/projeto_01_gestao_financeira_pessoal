@@ -183,7 +183,7 @@ No notebook `sistema_financeiro.ipynb`, são realizadas as seguintes análises c
 
 ## 14. Próximos Passos / Melhorias Futuras
 
-- Adicionar uma interface gráfica (GUI) com Tkinter ou PyQT.
+- Adicionar uma interface gráfica.
 - Criar mais visualizações de dados.
 - Implementar um sistema de metas financeiras.
-- Usar um banco de dados (como SQLite) para persistência.
+- Usar um banco de dados para persistência.
