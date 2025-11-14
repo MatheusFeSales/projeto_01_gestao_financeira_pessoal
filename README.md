@@ -137,8 +137,10 @@ No notebook `sistema_financeiro.ipynb`, são realizadas as seguintes análises c
 ---
 
 ## 10. Capturas de Tela / Exemplos de Saída
-
-*(Esta seção pode ser preenchida com imagens das visualizações geradas pelo notebook e exemplos de saída do terminal.)*
+![alt text](image-3.png)
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
 
 ---
 
