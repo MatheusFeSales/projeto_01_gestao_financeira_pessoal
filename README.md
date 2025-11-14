@@ -137,6 +137,11 @@ No notebook `sistema_financeiro.ipynb`, são realizadas as seguintes análises c
 ---
 
 ## 10. Capturas de Tela / Exemplos de Saída
+
+#### Gráfico 1: Menu Interativo do Programa
+![Menu Interativo](relatorios/Menu_Interativo.png)
+*Menu interativo ao rodar o programa no terminal*
+
 #### Gráfico 1: Receitas vs Despesas
 ![Receitas vs Despesas](relatorios/Receitas_Despesas_Mensais.png)
 *Comparação total entre receitas (azul) e despesas (vermelho)*
