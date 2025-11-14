@@ -137,10 +137,17 @@ No notebook `sistema_financeiro.ipynb`, são realizadas as seguintes análises c
 ---
 
 ## 10. Capturas de Tela / Exemplos de Saída
-![alt text](image-3.png)
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+#### Gráfico 1: Receitas vs Despesas
+![Receitas vs Despesas](relatorios/Receitas_Despesas_Mensais.png)
+*Comparação total entre receitas (azul) e despesas (vermelho)*
+
+#### Gráfico 2: Gastos por Categoria
+![Gastos por Categoria](relatorios/Gastos_por_categoria.png)
+*Distribuição dos gastos em cada categoria*
+
+#### Gráfico 3: Evolução do Saldo Mensal
+![Evolução do Saldo](relatorios/Evolucao_do_Saldo_Mensal.png)
+*Linha do tempo mostrando a evolução do saldo*
 
 ---
 
