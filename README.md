@@ -3,13 +3,10 @@
 **Disciplina:** Programação para Ciência de Dados  
 **Curso:** MBA Ciência de Dados - UNIFOR  
 **Instrutor:** Cássio Pinheiro  
-**Integrantes:**
-- Matheus Sales (2528052)
+**Integrantes:** Matheus Sales (2528052)
 
 **Repositório GitHub:** [https://github.com/MatheusFeSales/projeto_01_gestao_financeira_pessoal](https://github.com/MatheusFeSales/projeto_01_gestao_financeira_pessoal)  
 **Data de Entrega:** 14/11/2025
-
----
 
 ---
 
