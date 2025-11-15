@@ -71,7 +71,7 @@ graph TD
 
 ## 6. Requisitos Técnicos
 
-- **Versão do Python:** Python 3.x
+- **Versão do Python:** Python 3.8
 - **Bibliotecas e Dependências:**
   - `pandas>=2.0.0`
   - `matplotlib>=3.7.0`
@@ -123,15 +123,24 @@ No notebook `sistema_financeiro.ipynb`, são realizadas as seguintes análises c
 ## 9. Estrutura do Projeto
 
 ```
-/projeto_01_gestao_financeira_pessoal/
-├── README.md
-├── requirements.txt
-├── sistema_financeiro.py       # Arquivo principal
+projeto_01_gestao_financeira_pessoal/
+│
+├── README.md                           # Documentação completa do projeto
+├── requirements.txt                    # Dependências Python (pandas, matplotlib)
+│
+├── sistema_financeiro.py               # Arquivo principal (execução via terminal)
+├── sistema_financeiro.ipynb            # Notebook Jupyter (análise e desenvolvimento)
+│
 ├── dados/
-│   └── transacoes.txt
-├── relatorios/
-│   └── .gitkeep
-└── sistema_financeiro.ipynb    # Notebook de análise
+│   ├── transacoes.txt                  # Armazena todas as transações registradas
+│   └── transacoes_simuladas.csv        # Dataset de exemplo para testes
+│
+└── relatorios/
+    ├── .gitkeep                        # Mantém pasta vazia no Git
+    ├── menu_interativo.png             # Captura: menu do sistema
+    ├── receitas_despesas_mensais.png   # Gráfico: comparação mensal
+    ├── gastos_por_categoria.png        # Gráfico: distribuição por categoria
+    └── evolucao_do_saldo_mensal.png    # Gráfico: evolução do saldo
 ```
 
 ---
