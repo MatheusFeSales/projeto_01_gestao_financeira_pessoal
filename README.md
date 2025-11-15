@@ -36,6 +36,45 @@ graph TD
     style Actor fill:#08427b,stroke:#052e56,color:#fff
 ```
 
+## 3.1. Cronograma de Desenvolvimento (Gantt)
+
+O desenvolvimento do projeto seguiu o cronograma abaixo, com duração total de 18 dias:
+
+```mermaid
+gantt
+    title Cronograma de Desenvolvimento - Sistema de Gestão Financeira
+    dateFormat YYYY-MM-DD
+    section Planejamento
+    Definição de requisitos           :done, req, 2025-10-28, 1d
+    Projeto da arquitetura             :done, arq, after req, 1d
+    
+    section Desenvolvimento
+    Estrutura de dados                 :done, dados, 2025-10-30, 1d
+    Funções CRUD                       :done, crud, after dados, 2d
+    Persistência em TXT                :done, persist, after crud, 1d
+    Interface CLI                      :done, cli, after persist, 1d
+    
+    section Análise de Dados
+    Coleta de dados simulados          :done, simul, 2025-11-04, 1d
+    Análise exploratória (Pandas)      :done, eda, after simul, 1d
+    Visualizações (Matplotlib)         :done, viz, after eda, 1d
+    
+    section Qualidade
+    Testes e validações                :done, test, 2025-11-07, 2d
+    Correções e ajustes                :done, fix, after test, 1d
+    
+    section Documentação
+    Elaboração do README               :done, doc, 2025-11-10, 3d
+    Capturas de tela                   :done, screen, after doc, 1d
+    Revisão final                      :done, rev, after screen, 1d
+```
+
+**Marcos Principais:**
+- 🎯 **28/10/2025:** Início do projeto
+- 🎯 **30/10/2025:** Código principal concluído
+- 🎯 **05/11/2025:** Análise de dados finalizada
+- 🎯 **14/11/2025:** Projeto completo e entregue
+
 ---
 
 ## 4. Funcionalidades Implementadas
